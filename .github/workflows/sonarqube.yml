@@ -1,5 +1,5 @@
 yaml
-name: SonarQube Analysis
+name: SonarQube
 
 on:
   push:
