@@ -9,18 +9,9 @@ on:
       - main
 
 jobs:
-  sonarqube:
+  sonar:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
       - name: Cache SonarQube Scanner
         uses: actions/cache@v3
         with:
@@ -28,8 +19,11 @@ jobs:
           key: ${{ runner.os }}-sonar
 
       - name: Run SonarQube Scanner
+        env:
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           mvn sonar:sonar \
-            -Dsonar.projectKey=TryOn\
-            -Dsonar.host.url=http://127.0.0.1:9000\
-            -Dsonar.token=squ_5fcb937dab1caca71e9e2cb09ce42d281add228a
+            -Dsonar.projectKey=TryOn \
+            -Dsonar.host.url=$SONAR_HOST_URL \
+            -Dsonar.token=$SONAR_TOKEN
