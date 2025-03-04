@@ -31,5 +31,5 @@ jobs:
         run: |
           mvn sonar:sonar \
             -Dsonar.projectKey=TryOn\
-            -Dsonar.host.url=http://localhost:9000\
+            -Dsonar.host.url=http://127.0.0.1:9000\
             -Dsonar.token=squ_5fcb937dab1caca71e9e2cb09ce42d281add228a
